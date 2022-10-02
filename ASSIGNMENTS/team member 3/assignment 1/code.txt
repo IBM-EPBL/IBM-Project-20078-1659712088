@@ -1,0 +1,59 @@
+// C++ code
+//
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(13, OUTPUT);
+  pinMode(2,INPUT);
+  pinMode(4,INPUT);
+  pinMode(12,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(5,INPUT);
+  
+  
+}
+
+void loop()
+{
+  
+  //When a person enter into a room,light will be turned ON
+  int pirval=digitalRead(2);
+  
+  if (pirval==HIGH)
+  {
+  digitalWrite(13, HIGH);
+  }
+  else
+  {
+  digitalWrite(13, LOW);
+  }
+  
+ //Home Fire Alarm System
+  int tempval=analogRead(A0);
+  float mv=(tempval/1024.0)*5000;
+  float cel=mv/10;
+  if (cel>32)//normal room temp:24-25 degree Celsius
+  {
+    tone(4,80);
+  }
+  else
+  {
+    noTone(4);
+  }
+  //Water Level Indicator (in Tank)
+  digitalWrite(3,LOW);
+  digitalWrite(3,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(3,LOW);
+  float dur=pulseIn(5,HIGH);
+  float dis=(dur*0.0343)/2;
+  Serial.println(dis);
+  if (dis<50)
+  {
+    tone(12,50);
+  }
+  else
+  {
+    noTone(12);
+  } 
+}
