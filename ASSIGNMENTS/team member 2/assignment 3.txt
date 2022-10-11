@@ -1,0 +1,57 @@
+PYTHON CODE FOR(RASPBERRY PI) :
+
+1) BLINKING AN LED:
+
+Import RPi.GPIO as GPIO 
+From time import sleep 
+
+GPIO.setwarnings(False) 
+GPIO.setmode(GPIO.BOARD) 
+GPIO.setup(8, GPIO.OUT, initial=GPIO.LOW) 
+
+While True: 
+ GPIO.output(8, GPIO.HIGH) 
+ Sleep(1) 
+ GPIO.output(8, GPIO.LOW) 
+ Sleep(2)
+GPIO.output(8, GPIO.HIGH) 
+ Sleep(1) 
+GPIO.output(8, GPIO.LOW) 
+Sleep(1)
+
+2) TRAFFIC LIGHTS :
+
+
+Import RPi.GPIO as GPIO
+Import time
+Import signal
+Import sys
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(9, GPIO.OUT)
+GPIO.setup(10, GPIO.OUT)
+GPIO.setup(11, GPIO.OUT)
+Def LightsOff(signal, frame):
+    GPIO.output(9, False)
+    GPIO.output(10, False)
+    GPIO.output(11, False)
+    GPIO.cleanup()
+    Sys.exit(0)
+     Signal.signal(signal.SIGINT, LightsOff)
+While True: 
+    GPIO.output(9, True) 
+    Time.sleep(3)  
+
+    GPIO.output(10, True) 
+    Time.sleep(1)  
+
+    GPIO.output(9, False) 
+    GPIO.output(10, False) 
+    GPIO.output(11, True) 
+    Time.sleep(5)  
+    
+    GPIO.output(11, False) 
+    GPIO.output(10, True) 
+    Time.sleep(2)  
+    
+    GPIO.output(10, False)
